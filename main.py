@@ -15,9 +15,21 @@ import openpyxl
 # ********************* CONEXÃO BANCO DE DADOS *********************************
 
 app = Flask('registro')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:senai%40134@127.0.0.1/medidor'
-app.config['SQLALCHEMY_ECHO'] = True
+server_name = 'Mysql@127.0.0.1'
+port='3306'
+username = 'jessica'
+password = 'senai%40134'
+database = 'medidor'
+
+
+# Caminho para o certificado CA (neste exemplo, assumindo que está no diretório raiz do projeto)
+ca_certificate_path = 'DigiCertGlobalRootCA.crt.pem'
+
+# Construção da URI com SSL
+uri = f"mysql://{username}:{password}@{server_name}:3306/{database}"
+ssl_options = f"?ssl_ca={ca_certificate_path}"
+
+app.config['SQLALCHEMY_DATABASE_URI'] = uri + ssl_options
 
 mybd = SQLAlchemy(app)
 
