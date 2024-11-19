@@ -17,7 +17,7 @@ import openpyxl
 app = Flask('registro')
 server_name = 'Mysql@127.0.0.1'
 port='3306'
-username = 'jessica'
+username = 'root'
 password = 'senai%40134'
 database = 'medidor'
 
